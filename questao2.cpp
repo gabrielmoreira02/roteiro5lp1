@@ -11,11 +11,11 @@ class Invoice{
 	int qntd;
 	float preco;
 public:
-	Invoice(int n, string d, int q, float p){// : numero(n), descricao(d), qntd(q), preco(p);
+	Invoice(int n, string d, int q, float p){
 		numero = n;
 		descricao = d;
-		qntd = q;
-		preco = p;
+		setQntd(q);
+		setPreco(p);
 	}
 	int getNumero(){
 		return numero;
@@ -30,13 +30,21 @@ public:
 		return preco;
 	}
 	void setPreco(float d){
-		preco=d;
+		if (d<0.0){
+			preco = 0.0;
+		}else{
+			preco=d;
+		}
 	}
 	void setDescricao(string m){
 		descricao=m;
 	}
 	void setQntd(int a){
-		qntd=a;
+		if(a>0){
+			qntd=a;
+		}else{
+			qntd=0;
+		}
 	}
 	void setNumero(int a){
 		numero=a;
@@ -51,7 +59,7 @@ public:
 class InvoiceTest{
 public:
 	int main(){
-		Invoice i1(32109,"Remedio",17,2.5);
+		Invoice i1(32109,"Remedio",-17,-4);
 		Invoice i2 (43232, "Pasta de dente", 24, 3.6);
 
 		cout << "Produto 1: "<< i1.getNumero() << "/" << i1.getDescricao() <<"/" <<i1.getQntd()<< "/" << i1.getPreco()<<endl;
